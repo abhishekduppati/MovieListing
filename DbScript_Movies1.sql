@@ -16,7 +16,7 @@ CREATE TABLE [dbo].[Movies] (
     [Name]			NVARCHAR (100)	NOT NULL,
     [YearOfRelease] DATETIME		NOT NULL,
     [Plot]			NVARCHAR(MAX)	NOT NULL,
-	[Poster]		image			NULL,
+	[Poster]		nvarchar(MAX)			NULL,
 	[ActorID]		INT				NULL,
 	[ProducerID]	INT				NULL,
     PRIMARY KEY CLUSTERED ([MovieID] ASC)
@@ -53,6 +53,8 @@ ADD CONSTRAINT FK_MovieProducer FOREIGN KEY (ProducerID) REFERENCES Producer (Pr
 
 
 --END
+
+
 --BELOW STATEMENTS ARE EXTRA AND NOT USED IN THIS PROJECT
 
 --Below are the other workarounds for Image Upload
@@ -61,7 +63,7 @@ SELECT  1, 'Iron Man 3','2013-04-26 00:00:00.000','Tony-Stark encounters a formi
 FROM Openrowset( Bulk 'C:\Users\duppa\Desktop\Images\Pic1.jpg', Single_Blob) as Image
 
 INSERT INTO [dbo].[Movies]([Poster])
-SELECT 5  Bulkcolumn
+SELECT 1  Bulkcolumn
 FROM   OPENROWSET(BULK 'C:\Users\duppa\Desktop\Images\Pic1.jpg', SINGLE_BLOB) AS IMG_DATA;
 
 --Alternate method for Image upload
