@@ -1,13 +1,12 @@
 ﻿@model MovieListing.Models.Movy
+<fieldset>
+    @*@using (Html.BeginForm())
+        {*@
 
-
-@*@using (Html.BeginForm())
-{*@
-    
-@using (Html.BeginForm("Create", "Movie", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Create", "Movie", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        
-    @Html.AntiForgeryToken()
+
+        @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <h4>Movie</h4>
@@ -42,38 +41,73 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Poster, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Poster, "", new { @class = "text-danger" })
-                <input type="file" name="ImageFile" id="ImageFile" onchange="fileCheck(this);" />
+                <input type="file" name="file" id="file" onchange="fileCheck(this);" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Actor.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Actor.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Actor.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Producer.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Producer.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Producer.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.ActorID, "ActorID", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("ActorID", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ActorID, "", new { @class = "text-danger" })
-                </div>
+        @*<tr>
+            <td> Actor Name </td>
+            <div class="col-md-10">
+                @Html.DropDownList("Actor", (IEnumerable
+               <SelectListItem>)ViewBag.ActorName)
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProducerID, "ProducerID", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("ProducerID", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ProducerID, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
+        </tr>
+        <tr>
+            <td> producer Name </td>
+            <div class="col-md-10">
+                @Html.DropDownList("Producer", (IEnumerable
+               <SelectListItem>)ViewBag.ProducerName)
+            </div>
+        </tr>*@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</fieldset>
+
+@*Extra: Jquery-Ajax function for DropDown List, Already DropDown Added using ViewBag and Utility Class*@
+
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "ReturnJSONDataToAJax",
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                datatype: JSON,
+                success: function (result) {
+                    $(result).each(function () {
+                        $("#FromJson").append($("<option></option>").val(this.ActorID).html(this.Name));
+                    });
+                },
+                error: function (data) { }
+            });
+        });
+    </script>*@  

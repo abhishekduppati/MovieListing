@@ -22,15 +22,10 @@ namespace MovieListing.Models
         }
     
         public int ProducerID { get; set; }
-        [Required(ErrorMessage = "Producer Name is required.")]
-        [StringLength(100, MinimumLength = 2, ErrorMessage = "Name should not be minimum 2 characters and maximum of 100.")]
         [Display(Name = "Producer Name")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Please Specify Male, Female or Other")]
         public string Sex { get; set; }
-        [Required(ErrorMessage = "Please Specify Datetime in YYYY-MM-DD Format")]
         public System.DateTime DOB { get; set; }
-        [Required(ErrorMessage = "Producer Biography is needed")]
         public string Bio { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

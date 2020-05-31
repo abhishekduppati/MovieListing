@@ -80,23 +80,35 @@ namespace MovieListing.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (actor.ActorID > 0)
-                {
-                    db.Entry(actor).State = EntityState.Modified;
-                }
-                else
-                {
-                    db.Entry(actor).State = EntityState.Added;
-                }
+                db.Actors.Where(x => x.ActorID == actor.ActorID).SingleOrDefault();
+                //db.Entry(actor).State = EntityState.Modified;
+                db.Entry(actor).State = EntityState.Added; //Primary key value cant be modified so instead we create a new Row by Added
                 db.SaveChanges();               
                 return RedirectToAction("Index");
             }
             return View(actor);
         }
-
-        // GET: Actor/Delete/5
-        public ActionResult Delete(int? id)
-        {
+        ////Adding or Editing Actor
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AddOrEdit([Bind(Include = "Name, Sex, DOB, Bio")]Actor actor)
+        //{
+        //    if (actor.ActorID == 0)
+        //    {
+        //        db.Actors.Add(actor);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    else
+        //    {
+        //        db.Entry(actor).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //}
+            // GET: Actor/Delete/5
+       public ActionResult Delete(int? id)
+       { 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -107,8 +119,9 @@ namespace MovieListing.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(actor);
-        }
+       }
 
         // POST: Actor/Delete/5
         [HttpPost, ActionName("Delete")]

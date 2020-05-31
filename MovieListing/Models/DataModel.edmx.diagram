@@ -4,8 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="90d10d2dacc44d94b49997bc4239ac72" Name="Diagram1">
+      <Diagram DiagramId="8edd0ef858cf46a19d7affbcf3209020" Name="Diagram1">
         <EntityTypeShape EntityType="MoviesListModel.Actor" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoviesListModel.Image" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MoviesListModel.Movy" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="MoviesListModel.Producer" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="MoviesListModel.FK_MovieActor" ManuallyRouted="false" />

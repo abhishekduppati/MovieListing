@@ -12,22 +12,21 @@ namespace MovieListing.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
 
     public partial class Movy
     {
         public int MovieID { get; set; }
-        [Required(ErrorMessage = "Movie Name is required.")]
-        [StringLength(100, MinimumLength = 2, ErrorMessage = "Name should not be minimum 2 characters and maximum of 100.")]
-        [Display(Name = "Movie  Name")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Please Specify Datetime in YYYY-MM-DD Format")]
         [Display(Name = "Year of Release")]
         public System.DateTime YearOfRelease { get; set; }
         public string Plot { get; set; }
-        public byte[] Poster { get; set; }
+        public string Poster { get; set; }
         public Nullable<int> ActorID { get; set; }
         public Nullable<int> ProducerID { get; set; }
-    
+
+        public HttpPostedFileBase file { get; set; }
+
         public virtual Actor Actor { get; set; }
         public virtual Producer Producer { get; set; }
     }

@@ -1,59 +1,69 @@
 ﻿@model IEnumerable<MovieListing.Models.Movy>
-<h1>All about Movies</h1>
-<p>
-    @Html.ActionLink("Add a New Movie", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YearOfRelease)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Plot)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Poster)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Actor.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Producer.Name)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
+<fieldset>
+    <h1>All about Movies</h1>
+    <p>
+        @Html.ActionLink("Add a New Movie", "Create")
+    </p>
+
+
+
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.YearOfRelease)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Plot)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Poster)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Actor.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Producer.Name)
-            </td>
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MovieID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.MovieID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.MovieID })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearOfRelease)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Poster)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Actor.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producer.Name)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.YearOfRelease)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plot)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Poster)
+                    <img src="~/Images/" alt="Image" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Actor.Name)
+                    @*<b>@Html.RouteLink("Edit", new { action = "Edit", controller = "Actor", id = item.ActorID })</b>*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producer.Name)
+                    @*<b>@Html.RouteLink("Edit", new { action = "Edit", controller = "Producer", id = item.ProducerID })</b>*@
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MovieID })
+                    @Html.ActionLink("Details", "Details", new { id = item.MovieID })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MovieID })
+                </td>
+            </tr>
+        }
+    </table>
+</fieldset>

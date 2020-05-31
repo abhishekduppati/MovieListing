@@ -15,7 +15,9 @@ namespace MovieListing.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            return View(db.Movies.ToList());
+            var movy = db.Movies.ToList();
+            return View(movy);
+            
         }
         // GET: Movies/Details/5
         public ActionResult Details(int? id)
@@ -35,15 +37,40 @@ namespace MovieListing.Controllers
         // GET: Movies/Create
         public ActionResult Create()
         {
+            //*Below code is used for Displaying DropDownlist's*
+            //var actors = db.Actors.ToList();
+            //ViewBag.ActorName = GetSelectListItems(actors);
+            //var producers = db.Producers.ToList();
+            //ViewBag.ProducerName = GetSelectListItems1(producers);
+
             return View();
         }
 
         // POST: Movies/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name, YearOfRelease, Plot, Poster")] Movy movy)
+        public ActionResult Create([Bind(Include = "Name, YearOfRelease, Plot, Poster")] Movy movy, HttpPostedFileBase file)
         {
+            string pic = null;
+            if (file != null)
+            {
+                pic = System.IO.Path.GetFileNameWithoutExtension(file.FileName);
+                string Path = System.IO.Path.Combine(Server.MapPath("~/Images/"), pic);
+                file.SaveAs(Path);
+                movy.Poster = file != null ? pic : movy.Poster;
+            }
+            //string fileName = null;
+            //if (movy!=null)
+            //{
+            //    fileName = System.IO.Path.GetFileName(movy.ImageFile.FileName);
+            //    string extension = System.IO.Path.GetExtension(movy.ImageFile.FileName);
+            //    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            //    movy.Poster = "~/Images/" + fileName;
+            //    //To upload the images path should be specified below in Server.MapPath()
+            //    fileName = System.IO.Path.Combine(Server.MapPath("~/Images/"), fileName);
+            //    movy.ImageFile.SaveAs(fileName);
+            //}
+
             if (ModelState.IsValid)
             {
                 db.Movies.Add(movy);
@@ -73,8 +100,16 @@ namespace MovieListing.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MovieID, Name, YearOfRelease, Plot, Poster")] Movy movy)
+        public ActionResult Edit([Bind(Include = "MovieID, Name, YearOfRelease, Plot, Poster")] Movy movy, HttpPostedFileBase file)
         {
+            string pic = null;
+            if (file != null)
+            {
+                pic = System.IO.Path.GetFileName(file.FileName);
+                string Path = System.IO.Path.Combine(Server.MapPath("~/Images/"), pic);
+                file.SaveAs(Path);
+                movy.Poster = file != null ? pic : movy.Poster;
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(movy).State = EntityState.Modified;
@@ -118,6 +153,46 @@ namespace MovieListing.Controllers
             }
             base.Dispose(disposing);
         }
+        // Utility Class for Actors Displaying in DropDownList
+        private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<Actor> actors)
+        {
+            var selectList = new List<SelectListItem>();
+            foreach (var element in actors)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = element.ActorID.ToString(),
+                    Text = element.Name
+                });
+            }
+            return selectList;
+        }
+        // Utility Class for Producers Displaying in DropDownList
+        private IEnumerable<SelectListItem> GetSelectListItems1(IEnumerable<Producer> producers)
+        {
+            var selectList = new List<SelectListItem>();
+            foreach (var element in producers)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = element.ProducerID.ToString(),
+                    Text = element.Name
+                });
+            }
+            return selectList;
+        }
+
+        //public JsonResult ReturnJSONDataToAJax() //It will be fired from Jquery ajax call  
+        //{
+        //    var jsonData = db.Actors.ToList();
+        //    return Json(jsonData, JsonRequestBehavior.AllowGet);
+        //}
+        //public JsonResult ReturnJSONDataToAJax1() //It will be fired from Jquery ajax call  
+        //{
+        //    var jsonData = db.Producers.ToList();
+        //    return Json(jsonData, JsonRequestBehavior.AllowGet);
+        //}
+
     }
 
 }

@@ -9,6 +9,7 @@
 
 namespace MovieListing.Models
 {
+    using MovieListing.ViewModels;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
@@ -26,9 +27,9 @@ namespace MovieListing.Models
         }
     
         public virtual DbSet<Actor> Actors { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Movy> Movies { get; set; }
         public virtual DbSet<Producer> Producers { get; set; }
-
-        public System.Data.Entity.DbSet<MovieListing.Models.Image> Images { get; set; }
+        public virtual DbSet<MovieActorProducerImageVM> MovieActorProducerImageVMs { get; set; }
     }
 }

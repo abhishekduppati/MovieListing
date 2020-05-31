@@ -70,20 +70,37 @@ namespace MovieListing.Controllers
         }
 
         // POST: Producer/Edit/5
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Name, Sex, DOB, Bio")]  Producer producer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(producer).State = EntityState.Modified;
+                //db.Entry(producer).State = EntityState.Modified;
+                db.Entry(producer).State = EntityState.Added;//Primary key value cant be modified so instead we create a new Row by Added
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(producer);
         }
-
+        ////Adding or Editing producer
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AddOrEdit([Bind(Include = "Name, Sex, DOB, Bio")]Producer producer)
+        //{
+        //    if (producer.ProducerID == 0)
+        //    {
+        //        db.Producers.Add(producer);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    else
+        //    {
+        //        db.Entry(producer).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //}
         // GET: Producer/Delete/5
         public ActionResult Delete(int? id)
         {

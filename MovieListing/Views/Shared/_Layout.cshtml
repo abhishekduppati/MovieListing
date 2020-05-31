@@ -16,10 +16,11 @@
            @RenderSection("scripts", required: false)
     <nav>
         <h3>Navigation</h3>
-        <b>@Html.RouteLink("Movie", new { action = "Index", controller = "Movie", area = "Movie" })</b>
-        <b>@Html.RouteLink("Actor", new { action = "Index", controller = "Actor", area = "Actor" })</b>
-        <b>@Html.RouteLink("Producer", new { action = "Index", controller = "Producer", area = "Producer" })</b>
-        <b>@Html.RouteLink("Poster", new { action = "View", controller = "Image",area="Image", @id = "1" })</b>
+        <b>@Html.RouteLink("Movie", new { action = "Index", controller = "Movie" })</b>
+        <b>@Html.RouteLink("Actor", new { action = "Index", controller = "Actor" })</b>
+        <b>@Html.RouteLink("Producer", new { action = "Index", controller = "Producer" })</b>
+        <b>@Html.RouteLink("Poster", new { action = "View", controller = "Image", @id = 1  })</b>
+        @*<b>@Html.RouteLink("Edit", new { action = "View", controller = "Image", id = 1})</b>*@
     </nav>
 
     <!-- End of Left Sidebar -->
