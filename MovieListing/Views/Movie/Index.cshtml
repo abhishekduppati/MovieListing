@@ -44,11 +44,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Poster)
+                    <img src="@item.Poster" width="200" height="100" />
 
-                    <img src="@Url.Content(item.Poster)" width="200" height="100" />
+                    @*<img src="@Url.Content(item.Poster)" width="200" height="100" />*@
 
                     @*<img src='@Url.Action("Index", "Movie", new {id = item.Poster})'/>*@
-                    @*<img src="@item.Poster" width="200" height="100" />*@
+
                     @*<img src="~/Images/" alt="Image" width="200" height="100" />*@
                 </td>
                 <td>

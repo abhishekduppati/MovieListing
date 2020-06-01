@@ -25,8 +25,6 @@ namespace MovieListing.Models
         public Nullable<int> ActorID { get; set; }
         public Nullable<int> ProducerID { get; set; }
 
-        public HttpPostedFileBase file { get; set; }
-
         public virtual Actor Actor { get; set; }
         public virtual Producer Producer { get; set; }
     }
