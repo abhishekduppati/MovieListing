@@ -17,9 +17,13 @@ namespace MovieListing.Models
     public partial class Movy
     {
         public int MovieID { get; set; }
+        [Display(Name = "Movie Name")]
+        [Required, RegularExpression(@"/^[a-zA-Z0-9 !@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]{2,50}$/", ErrorMessage = "Please provide a valid Name and it should be a minimum of 2 Characters and Maximum up-to 50")]
         public string Name { get; set; }
         [Display(Name = "Year of Release")]
+        [Required, RegularExpression(@"/(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)/", ErrorMessage = "Please provide a valid Date in DD/MM/YYYY Format")]
         public System.DateTime YearOfRelease { get; set; }
+        [Required]
         public string Plot { get; set; }
         public string Poster { get; set; }
         public Nullable<int> ActorID { get; set; }
