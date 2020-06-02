@@ -25,7 +25,7 @@ This Project concentrates on Creating MoviesList and Adding Producers, Actors et
         
 3. Required Field Validator
 
-        Field Name: Plot
+        Field Name's: Name, Sex, DOB, Bio, YearOfRelease, Plot
         
 # To be Added in Future:
 
