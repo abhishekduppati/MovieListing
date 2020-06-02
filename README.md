@@ -11,9 +11,9 @@ This Project concentrates on Creating MoviesList and Adding Producers, Actors et
 
 # Validations used in this Project:
 
-1. User to enter Alphabets and/or Special Characters along with Spacing between the Name for example Abhishek Duppati in the Name
+1. User to enter Alphabets and/or Special Characters along with Spacing between the Name for example Abhishek Duppati in the Name with Minumum 2 Characters and Maximum of 50
 
-        Regular Expression: /^[a-zA-Z0-9 !@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]+$/
+        Regular Expression: /^[a-zA-Z0-9 !@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]{2,50}+$/
 
         Field Name: Name
 
@@ -31,4 +31,3 @@ This Project concentrates on Creating MoviesList and Adding Producers, Actors et
 
 1. As ActorID and ProducerID are Primary Key based with References and which are binded to Actors and Movies tables, due to this we cannot put an Edit option for Actor and Producer on Movie index View. Even if we include Edit option and try to do some modifications this only adds a new Actor details or Producer details to the respective tables, because some workarounds needs to be done and Overcome this problem in future.
 2. We can try to achieve this using ViewModels but doing CRUD Operations on ViewModel is Challengeable and needs to be concentrated in future.
-        
