@@ -13,7 +13,7 @@ This Project concentrates on Creating MoviesList and Adding Producers, Actors et
 
 1. User to enter Alphabets and/or Special Characters along with Spacing between the Name for example Abhishek Duppati in the Name with Minumum 2 Characters and Maximum of 50
 
-        Regular Expression: /^[a-zA-Z0-9 !@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]{2,50}+$/
+        Regular Expression: /^[a-zA-Z0-9 !@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]{2,50}$/
 
         Field Name: Name
 
