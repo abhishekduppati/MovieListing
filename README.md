@@ -27,7 +27,3 @@ This Project concentrates on Creating MoviesList and Adding Producers, Actors et
 
         Field Name's: Name, Sex, DOB, Bio, YearOfRelease, Plot
         
-# To be Added in Future:
-
-1. As ActorID and ProducerID are Primary Key based with References and which are binded to Actors and Movies tables, due to this we cannot put an Edit option for Actor and Producer on Movie index View. Even if we include Edit option and try to do some modifications this only adds a new Actor details or Producer details to the respective tables, because some workarounds needs to be done and Overcome this problem in future.
-2. We can try to achieve this using ViewModels but doing CRUD Operations on ViewModel is Challengeable and needs to be concentrated in future.
