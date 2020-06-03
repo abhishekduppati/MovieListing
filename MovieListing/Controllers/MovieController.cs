@@ -91,7 +91,7 @@ namespace MovieListing.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MovieID, Name, YearOfRelease, Plot, Poster")] Movy movy, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "MovieID, Name, YearOfRelease, Plot, Poster, ActorID, ProducerID")] Movy movy, HttpPostedFileBase file)
         {
             string pic = null;
             if (file != null)
