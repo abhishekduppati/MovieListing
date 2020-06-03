@@ -3,38 +3,38 @@
 Use MoviesList;
 
 CREATE TABLE [dbo].[Actors] (
-    [ActorID]        INT            IDENTITY (1, 1)  NOT NULL,
-    [Name]      NVARCHAR (100)	NOT NULL,
-    [Sex]		VARCHAR(50)		NOT NULL,
-    [DOB]		DATETIME		NOT NULL,
-	[Bio]		NVARCHAR(MAX)	NOT NULL,
+    [ActorID]        	INT             IDENTITY (1, 1)  NOT NULL,
+    [Name]      	NVARCHAR (100)	NOT NULL,
+    [Sex]		VARCHAR(50)	NOT NULL,
+    [DOB]		DATETIME	NOT NULL,
+    [Bio]		NVARCHAR(MAX)	NOT NULL,
     PRIMARY KEY CLUSTERED ([ActorID] ASC)
 );
 
 CREATE TABLE [dbo].[Movies] (
-    [MovieID]       INT            IDENTITY (1, 1) NOT NULL,
-    [Name]			NVARCHAR (100)	NOT NULL,
-    [YearOfRelease] DATETIME		NOT NULL,
-    [Plot]			NVARCHAR(MAX)	NOT NULL,
-	[Poster]		nvarchar(MAX)			NULL,
-	[ActorID]		INT				NULL,
-	[ProducerID]	INT				NULL,
+    [MovieID]       	INT            IDENTITY (1, 1) NOT NULL,
+    [Name]		NVARCHAR (100)	NOT NULL,
+    [YearOfRelease] 	DATETIME	NOT NULL,
+    [Plot]		NVARCHAR(MAX)	NOT NULL,
+    [Poster]		nvarchar(MAX)	NULL,
+    [ActorID]		INT		NULL,
+    [ProducerID]	INT	NULL,
     PRIMARY KEY CLUSTERED ([MovieID] ASC)
 );
 
 CREATE TABLE [dbo].[Producer] (
     [ProducerID]        INT            IDENTITY (1, 1) NOT NULL,
-    [Name]      NVARCHAR (100)		NOT NULL,
-    [Sex]		VARCHAR(50)			NOT NULL,
-    [DOB]		DATETIME			NOT NULL,
-	[Bio]		NVARCHAR(Max)		NOT NULL,
+    [Name]      	NVARCHAR (100)  NOT NULL,
+    [Sex]		VARCHAR(50)	NOT NULL,
+    [DOB]		DATETIME	NOT NULL,
+    [Bio]		NVARCHAR(Max)	NOT NULL,
     PRIMARY KEY CLUSTERED ([ProducerID] ASC)
 );
 
 CREATE TABLE [dbo].[Image] (
-    [ImageID]        INT            IDENTITY (1, 1) NOT NULL,
-    [Title]			VARCHAR (250)		NULL,
-    [ImagePath]		VARCHAR(MAX)		NULL,
+    [ImageID]        	INT            IDENTITY (1, 1) NOT NULL,
+    [Title]		VARCHAR (250)	NULL,
+    [ImagePath]		VARCHAR(MAX)	NULL,
     PRIMARY KEY CLUSTERED ([ImageID] ASC)
 );
 
@@ -69,15 +69,15 @@ FROM   OPENROWSET(BULK 'C:\Users\duppa\Desktop\Images\Pic1.jpg', SINGLE_BLOB) AS
 --Alternate method for Image upload
 
 CREATE TABLE [dbo].[Posters] (
-	[PosterID]			INT            IDENTITY (1, 1) NOT NULL, 
-	[Poster]		image NULL,
-	PRIMARY KEY CLUSTERED ([PosterID] ASC)
+    [PosterID]		INT            IDENTITY (1, 1) NOT NULL, 
+    [Poster]		image NULL,
+    PRIMARY KEY CLUSTERED ([PosterID] ASC)
    )
 --Stored Procedure for Image Upload
 Use MoviesList
 Go
 CREATE PROCEDURE dbo.usp_ImportImage (
-     @PicName NVARCHAR (100)
+    @PicName NVARCHAR (100)
    )
 AS
 BEGIN
