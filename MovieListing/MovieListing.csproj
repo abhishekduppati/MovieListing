@@ -188,6 +188,7 @@
     <Compile Include="Models\Image.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ImageHelper.cs" />
     <Compile Include="Models\Movy.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>

@@ -16,8 +16,8 @@ namespace MovieListing.Controllers
         public ActionResult Index()
         {
             var movy = db.Movies.ToList();
-            return View(movy);
             
+            return View(movy);
         }
         // GET: Movies/Details/5
         public ActionResult Details(int? id)
@@ -38,10 +38,11 @@ namespace MovieListing.Controllers
         public ActionResult Create()
         {
             //*Below code is used for Displaying DropDownlist's*
-            //var actors = db.Actors.ToList();
-            //ViewBag.ActorName = GetSelectListItems(actors);
-            //var producers = db.Producers.ToList();
-            //ViewBag.ProducerName = GetSelectListItems1(producers);
+            Actor actor = new Actor();
+            var actors = db.Actors.ToList();
+            ViewBag.ActorName = GetSelectListItems(actors);
+            var producers = db.Producers.ToList();
+            ViewBag.ProducerName = GetSelectListItems1(producers);
 
             return View();
         }
@@ -54,22 +55,12 @@ namespace MovieListing.Controllers
             string pic = null;
             if (file != null)
             {
-                pic = System.IO.Path.GetFileNameWithoutExtension(file.FileName);
-                string Path = System.IO.Path.Combine(Server.MapPath("~/Images/"), pic);
+                pic = System.IO.Path.GetFileName(file.FileName);
+                string extension = System.IO.Path.GetExtension(file.FileName);
+                string Path = System.IO.Path.Combine(Server.MapPath("~/Images/"), pic); //To upload Images
                 file.SaveAs(Path);
                 movy.Poster = file != null ? pic : movy.Poster;
             }
-            //string fileName = null;
-            //if (movy!=null)
-            //{
-            //    fileName = System.IO.Path.GetFileName(movy.ImageFile.FileName);
-            //    string extension = System.IO.Path.GetExtension(movy.ImageFile.FileName);
-            //    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            //    movy.Poster = "~/Images/" + fileName;
-            //    //To upload the images path should be specified below in Server.MapPath()
-            //    fileName = System.IO.Path.Combine(Server.MapPath("~/Images/"), fileName);
-            //    movy.ImageFile.SaveAs(fileName);
-            //}
 
             if (ModelState.IsValid)
             {
